@@ -35,9 +35,10 @@ int main() {
 
   PID pid_steer;
   pid_steer.Init(0.13, 0.0, 1.0);
+  pid_steer.Init(0.2, 0.0, 3.0);
 
   PID pid_throttle;
-  pid_throttle.Init(0.05, 0.001, 0.0);
+  pid_throttle.Init(0.1, 0.001, 0.2);
 
   /**
    * TODO: Initialize the pid variable.
@@ -67,7 +68,7 @@ int main() {
           double steer_value = std::max(-minMax, std::min(-pid_steer.TotalError(), minMax));
         
           minMax = 1.0;
-          double desired_speed = 5.0;
+          double desired_speed = 15.0;
           pid_throttle.UpdateError(speed - desired_speed);
           double throttle = std::max(-minMax, std::min(-pid_throttle.TotalError(), minMax));
         
